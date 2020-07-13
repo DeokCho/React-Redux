@@ -1,0 +1,15 @@
+import React from "react"
+
+const countActions = dispatcher => ({
+    tick(currentCount){
+        dispatcher.handleAction({type: 'TICK'})
+    },
+    reset(count){
+        dispatcher.handleAction({
+            type: 'RESET',
+            count
+        })
+    }
+})
+export default countActions
+
