@@ -1,5 +1,7 @@
+import '../data/initialState.json'
+
 const userService = {
-    login
+    loginService
 }
 function handelResponse(response){
     return response.text()
@@ -17,19 +19,19 @@ function handelResponse(response){
         })
 }
 
-function login(userid, passwd){
+function loginService(userid, passwd){
+    alert(`loginService 진입`)
     const requestOptions = {
         method: 'POST',
-        headers: {'content-Type:': 'application/json'},
+        headers: {'Content-Type:': 'application/json'},
         body: JSON.stringify({userid, passwd})
     }
-    return fetch('/user/login', requestOptions)
+    return fetch('/initialState.json', requestOptions)
         .then(handelResponse)
         .then(user=>{
-            sessionStorage.setItem('userid', JSON.stringify(user))
-            return user
+            alert(`thunk가 응답함`)
+            localStorage.setItem('userid', JSON.stringify(userid))
         })
-        .catch()
 }
 
 

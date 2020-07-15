@@ -1,2 +1,3 @@
 export {default as Countdown} from './Countdown'
-export {default as Login} from './member/Login'
+export {Login} from './member/Login'
+export {Join} from './member/Join'

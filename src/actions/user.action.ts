@@ -1,24 +1,26 @@
 import {userConstants} from '../constants'
 import {userService} from '../apis'
+import {alertActions} from "./alert.actions";
 
 const userActions = {
-    login // 객체, 액션
+    login, // 객체, 액션
+    join
 }
 
-function request(userid:string):object{
-    return {type:userConstants.LOGIN_REQUEST, userid}
+function join(userid, passwd, passwd_repeat){
+    alert(`ID: ${userid} PW:${passwd} passwd-repeat:${passwd_repeat}`)
+    return {type:userConstants.JOIN_REQUEST, userid}
 }
-function success(userid:string):object{
-    return {type:userConstants.LOGIN_SUCCESS, userid}
-}
-function failure(userid:string, error:string):object{
-    return {type:userConstants.LOGIN_FAIL, userid, error}
-}
+function login(userid, password) {
+    alert(`ID: ${userid}, PW: ${password}`)
+    userService.loginService(userid, password)
 
-function login(userid:string, passwd){
     return dispatch =>{
         dispatch(request(userid))
     }
+
+    const request = user => { return { type: userConstants.LOGIN_REQUEST, user}}
+    const success = user => { return { type: userConstants.LOGIN_SUCCESS, user}}
 }  // 액션생성기
 
 export default userActions // 내부에서 사용하는 것은 오픈하지 않는다.
